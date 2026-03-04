@@ -18,21 +18,32 @@ class Program
         catch (ArgumentOutOfRangeException)
         {
             Console.WriteLine("Hours and Rate must be positive.");
-            return null;
+            return 0.0;
         }
     }
     static void Main(string[] args)
     {
-        Console.WriteLine("Enter employee name: ");
+        // get name and age
+        Console.Write("Enter employee first name: ");
         string name = Console.ReadLine();
-        Console.WriteLine("Hours worked: ");
+        Console.Write("Enter employee last name: ");
+        string lname = Console.ReadLine();
+        Console.Write("Enter employee age: ");
+        int age = int.Parse(Console.ReadLine());
+        // make person class
+        PayrollCalculator.Person employee = new PayrollCalculator.Person(name, lname, age);
+        // Get pay
+        Console.Write("Hours worked: ");
         string str_hours = Console.ReadLine();
-        Console.WriteLine("Hourly Rate: ");
+        Console.Write("Hourly Rate: ");
         string str_rate = Console.ReadLine();
+        // Parse pay into doubles
         double hours, rate;
         double.TryParse(str_hours, out hours);
         double.TryParse(str_rate, out rate);
         double net_pay = CalculatePay(hours, rate);
-        Console.WriteLine($"{name} earned ${net_pay:F2} after tax.");
+        // print wage post tax if employee is adult
+        if (employee.IsAdult()) Console.WriteLine($"{employee.GetFirstName()} earned ${net_pay:F2} after tax.");
+        else Console.WriteLine("Child Labour is bad");
     }
 }

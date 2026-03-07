@@ -31,7 +31,7 @@ class Program
         Console.Write("Enter employee age: ");
         int age = int.Parse(Console.ReadLine());
         // make person class
-        PayrollCalculator.Person employee = new PayrollCalculator.Person(name, lname, age);
+        Person employee = new Person(name, lname, age);
         // Get pay
         Console.Write("Hours worked: ");
         string str_hours = Console.ReadLine();
